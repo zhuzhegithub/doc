@@ -19,7 +19,11 @@ public class GuideApplicationTests {
 
 		final Integer symbolC = galaxySymbolProperties.getSymbolC();
 
-		System.out.println(symbolC);
+		final GalaxySymbolProperties.GalaxySymbol galaxySymbol = galaxySymbolProperties.getSymbol("L");
+
+
+
+		System.err.println(galaxySymbol.getValue());
 
 	}
 
