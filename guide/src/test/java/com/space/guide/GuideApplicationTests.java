@@ -1,9 +1,8 @@
 package com.space.guide;
 
-import com.space.guide.config.GalaxySymbolProperties;
+import com.space.guide.config.GalaxySymbol;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -11,19 +10,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class GuideApplicationTests {
 
-	@Autowired
-	private GalaxySymbolProperties galaxySymbolProperties;
 
 	@Test
 	public void contextLoads() {
 
-		final Integer symbolC = galaxySymbolProperties.getSymbolC();
 
-		final GalaxySymbolProperties.GalaxySymbol galaxySymbol = galaxySymbolProperties.getSymbol("L");
-
+		//Integer value = GalaxySymbol.getSymbolValue("C1");
 
 
-		System.err.println(galaxySymbol.getValue());
+		//System.err.println(value);
 
 	}
 
