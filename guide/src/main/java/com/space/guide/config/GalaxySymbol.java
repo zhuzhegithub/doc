@@ -1,5 +1,8 @@
 package com.space.guide.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author zhuzhe
  * @date 2018/6/13 19:48
@@ -40,6 +43,14 @@ public enum GalaxySymbol {
             }
         }
         return null;
+    }
+
+    public static List<Character> getAllSymbol() {
+        List<Character> characterList = new ArrayList<>();
+        for (GalaxySymbol galaxySymbol : GalaxySymbol.values()) {
+            characterList.add(galaxySymbol.getSymbol());
+        }
+        return characterList;
     }
 
     public Character getSymbol() {
