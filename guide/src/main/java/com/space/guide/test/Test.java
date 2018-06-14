@@ -2,15 +2,11 @@ package com.space.guide.test;
 
 import com.space.guide.bean.InputBean;
 import com.space.guide.config.GalaxySymbol;
-import com.space.guide.exception.IllegalInputException;
-import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -33,11 +29,25 @@ public class Test {
 
         InputBean input = new InputBean().getInput(objects);
 
-        Map<String, String> symbolMap = input.getSymbolMap();
+        Map<String, Character> symbolMap = input.getSymbolMap();
         List<String> exampleList = input.getExampleList();
         List<String> questionList = input.getQuestionList();
 
+        for (String example : exampleList) {
+            System.out.println(example);
+            String[] split = example.split(" ");
 
-        System.out.println(symbolMap);
+            int num1 = GalaxySymbol.getSymbol(symbolMap.get(split[0])).getValue();
+            int num2 = GalaxySymbol.getSymbol(symbolMap.get(split[1])).getValue();
+
+
+            //int num3 = GalaxySymbol.getSymbol(symbolMap.get(split[2])).getValue();
+
+            int num3 = Integer.valueOf(split[4]) - num1 - num2;
+
+            int result = Integer.valueOf(split[4]);
+        }
+
+
     }
 }

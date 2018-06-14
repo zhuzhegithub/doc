@@ -18,11 +18,11 @@ import java.util.Map;
 @Data
 public class InputBean {
 
-    private Map<String, String> symbolMap;
+    private Map<String, Character> symbolMap;
     private List<String> exampleList;
     private List<String> questionList;
 
-    public InputBean(){
+    public InputBean() {
         symbolMap = new HashMap<>();
         exampleList = new ArrayList<>();
         questionList = new ArrayList<>();
@@ -39,7 +39,7 @@ public class InputBean {
                         !GalaxySymbol.getAllSymbol().contains(split[2].toCharArray()[0])) {
                     throw new IllegalInputException("非法的输入");
                 }
-                symbolMap.put(split[0], split[2]);
+                symbolMap.put(split[0], split[2].toCharArray()[0]);
                 continue;
             }
             if (split.length == 6) {
