@@ -13,11 +13,11 @@ how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
 
 
 ##
-glob glob Silver ==> II Sliver ==> 2 Sliver = 34
-glob prok Gold ==> IV Gold ==> 4 Gold = 57800
-pish pish Iron ==> XX Iron ==> 20 Iron = 3910
+glob glob Silver ==> II Sliver ==> 2 Sliver = 34  ==> Sliver = 17
+glob prok Gold ==> IV Gold ==> 4 Gold = 57800  ==> Gold = 14450
+pish pish Iron ==> XX Iron ==> 20 Iron = 3910  ==> Iron = 195.5
 
 pish tegj glob glob ==> XLII ==> 50-10+1+1 = 42
-glob prok Silver ==> IV Silver ==> 4 Sliver = 34*2 = 68
+glob prok Silver ==> IV Silver ==> 4 Sliver = 68
 glob prok Gold ==> IV Gold ==> 4 Gold = 57800
-glob prok Iron ==> IV Iron ==> 4 Iron = 3910/5 = 782
+glob prok Iron ==> IV Iron ==> 4 Iron = 782

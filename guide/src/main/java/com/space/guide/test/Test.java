@@ -1,12 +1,13 @@
 package com.space.guide.test;
 
 import com.space.guide.bean.InputBean;
-import com.space.guide.config.GalaxySymbol;
+import com.space.guide.utils.SymbolConvertUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -33,21 +34,40 @@ public class Test {
         List<String> exampleList = input.getExampleList();
         List<String> questionList = input.getQuestionList();
 
+        /*保存标志对应的积分值*/
+        Map<String, Double> creditsMap = new HashMap<>();
+
         for (String example : exampleList) {
-            System.out.println(example);
             String[] split = example.split(" ");
-
-            int num1 = GalaxySymbol.getSymbol(symbolMap.get(split[0])).getValue();
-            int num2 = GalaxySymbol.getSymbol(symbolMap.get(split[1])).getValue();
-
-
-            //int num3 = GalaxySymbol.getSymbol(symbolMap.get(split[2])).getValue();
-
-            int num3 = Integer.valueOf(split[4]) - num1 - num2;
-
-            int result = Integer.valueOf(split[4]);
+            String symbols = "" + symbolMap.get(split[0]) + symbolMap.get(split[1]);
+            Integer values = SymbolConvertUtil.getValues(symbols);
+            creditsMap.put(split[2], Double.valueOf(split[4]) / values);
         }
 
-
+        for (String question : questionList) {
+            if (question.startsWith("how much is ")) {
+                //how much is pish tegj glob glob ?
+                String substring = question.substring("how much is ".length(), question.indexOf(" ?"));
+                String symbols = "";
+                String[] split = substring.split(" ");
+                for (int i = 0; i < split.length; i++) {
+                    symbols += symbolMap.get(split[i]);
+                }
+                Integer values = SymbolConvertUtil.getValues(symbols);
+                System.out.println(substring + " is " + values);
+            } else if (question.startsWith("how many Credits is ")) {
+                //how many Credits is glob prok Silver ?
+                String substring = question.substring("how many Credits is ".length(), question.indexOf(" ?"));
+                String symbols = "";
+                String[] split = substring.split(" ");
+                for (int i = 0; i < split.length - 1; i++) {
+                    symbols += symbolMap.get(split[i]);
+                }
+                Integer values = SymbolConvertUtil.getValues(symbols);
+                System.out.println(substring + " is " + Double.valueOf(creditsMap.get(split[split.length - 1]) * values).intValue() + " Credits");
+            } else {
+                System.out.println("I have no idea what you are talking about");
+            }
+        }
     }
 }
