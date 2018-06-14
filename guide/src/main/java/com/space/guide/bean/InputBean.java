@@ -2,6 +2,7 @@ package com.space.guide.bean;
 
 import com.space.guide.config.GalaxySymbol;
 import com.space.guide.exception.IllegalInputException;
+import com.space.guide.utils.SymbolConvertUtil;
 import lombok.Data;
 import org.springframework.util.StringUtils;
 
@@ -32,24 +33,27 @@ public class InputBean {
 
         for (int i = 0; i < objects.length; i++) {
             String object = String.valueOf(objects[i]);
+            if(!SymbolConvertUtil.checkRepeat(object)){
+                throw new IllegalInputException("illegal input ,too many repeat symbol");
+            }
             String[] split = object.split(" ");
             if (split.length == 3) {
                 if (StringUtils.isEmpty(split[0]) || StringUtils.isEmpty(split[1]) || StringUtils.isEmpty(split[2]) ||
                         !split[1].equals("is") || split[2].toCharArray().length != 1 ||
                         !GalaxySymbol.getAllSymbol().contains(split[2].toCharArray()[0])) {
-                    throw new IllegalInputException("非法的输入");
+                    throw new IllegalInputException("illegal input");
                 }
                 symbolMap.put(split[0], split[2].toCharArray()[0]);
                 continue;
             }
             if (split.length == 6) {
                 if (!split[3].equals("is") || !split[5].equals("Credits")) {
-                    throw new IllegalInputException("非法的输入");
+                    throw new IllegalInputException("illegal input");
                 }
                 try {
                     Integer.valueOf(split[4]);
                 } catch (Exception e) {
-                    throw new IllegalInputException("非法的输入");
+                    throw new IllegalInputException("illegal input");
                 }
                 exampleList.add(object);
                 continue;

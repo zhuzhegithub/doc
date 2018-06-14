@@ -21,15 +21,12 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
         InputStream inputStream = Test.class.getClassLoader().getResourceAsStream("input.txt");
-
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader reader = new BufferedReader(inputStreamReader);
-
         Stream<String> lines = reader.lines();
         Object[] objects = lines.toArray();
 
         InputBean input = new InputBean().getInput(objects);
-
         Map<String, Character> symbolMap = input.getSymbolMap();
         List<String> exampleList = input.getExampleList();
         List<String> questionList = input.getQuestionList();

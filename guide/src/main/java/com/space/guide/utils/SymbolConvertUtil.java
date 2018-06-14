@@ -2,6 +2,7 @@ package com.space.guide.utils;
 
 import com.space.guide.config.CharReduceRule;
 import com.space.guide.config.GalaxySymbol;
+import com.space.guide.exception.IllegalInputException;
 import com.space.guide.exception.IllegalSymbolException;
 import org.springframework.util.StringUtils;
 
@@ -47,16 +48,15 @@ public class SymbolConvertUtil {
                     return value;
                 }
             } else {
+                checkReduceRule(split[i], split[i + 1]);
+                value += (getValue(split[i + 1]) - getValue(split[i]));
                 if (split.length - i > 3) {
-                    value += (getValue(split[i + 1]) - getValue(split[i]));
                     // 一次消费了2个symbol,需要i++
                     i++;
                 } else if (split.length - i > 2) {
-                    value += (getValue(split[i + 1]) - getValue(split[i]));
                     value += getValue(split[i + 2]);
                     return value;
                 } else {
-                    value += (getValue(split[i + 1]) - getValue(split[i]));
                     return value;
                 }
             }
@@ -84,11 +84,10 @@ public class SymbolConvertUtil {
      * @param sub     减数
      * @return
      */
-    public static boolean reduceRule(Character minuend, Character sub) {
-        if (CharReduceRule.ableReduce(minuend) && CharReduceRule.getRule(minuend) != null &&
-                CharReduceRule.getRule(minuend).contains(sub)) {
-            return true;
+    public static void checkReduceRule(Character minuend, Character sub) {
+        if (!(CharReduceRule.ableReduce(minuend) && CharReduceRule.getRule(minuend) != null &&
+                CharReduceRule.getRule(minuend).contains(sub))) {
+            throw new IllegalInputException("illegal input ,not allow " + sub + "-" + minuend);
         }
-        return false;
     }
 }
