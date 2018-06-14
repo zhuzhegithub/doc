@@ -93,11 +93,12 @@ public class SymbolConvertUtil {
     }
 
     public static void main(String[] args) {
-//        Integer mmvi = getValues("MCMXLIV");
-//        System.out.println(mmvi);
+//        Integer mmvi = getValues("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDCCXCIV");
+        Integer mmvi = getValues("IVXXXII");
+        System.out.println(mmvi);
 
 
-        System.out.println(reduceRule('C','I'));
+        //System.out.println(reduceRule('C','I'));
 
 
     }
